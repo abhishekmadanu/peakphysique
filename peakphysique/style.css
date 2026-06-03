@@ -1,0 +1,167 @@
+/* --- style.css --- */
+
+/* 1. Color Variables (Easy to change theme) */
+:root {
+    --primary-gold: #c0a16b;
+    --dark-bg: #121212;
+    --card-bg: #1e1e1e;
+    --text-light: #ffffff;
+    --text-gray: #b3b3b3;
+}
+
+/* 2. Global Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+body { background-color: var(--dark-bg); color: var(--text-light); }
+
+/* 3. Navigation */
+nav { 
+    background: transparent; 
+    color: var(--text-light); 
+    padding: 1.5rem 5%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.logo { 
+    font-size: 1.5rem; 
+    font-weight: 700; 
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+.logo span { color: var(--primary-gold); }
+.nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
+.nav-links a { color: var(--text-light); text-decoration: none; font-weight: 500; cursor: pointer; transition: color 0.3s; font-size: 0.9rem; text-transform: uppercase; }
+.nav-links a:hover { color: var(--primary-gold); }
+
+/* Login Button */
+.login-btn {
+    border: 2px solid var(--primary-gold);
+    padding: 8px 20px;
+    border-radius: 30px;
+    color: var(--primary-gold);
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.login-btn:hover { background: var(--primary-gold); color: var(--dark-bg); }
+
+/* 4. Sections & Animation */
+.section-container {
+    display: none;
+    padding: 5rem 5%;
+    animation: fadeIn 0.5s;
+}
+.section-container.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* 5. Hero Section (Home) */
+#home {
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.hero-bg {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+    background-size: cover;
+    background-position: center;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+}
+.hero-content { max-width: 600px; }
+.hero h1 { 
+    font-size: 3.5rem; 
+    font-weight: 700; 
+    line-height: 1.2; 
+    margin-bottom: 1.5rem; 
+    text-transform: uppercase; 
+}
+.hero p {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+}
+
+/* 6. Goal Switcher (The Toggle) */
+.goal-toggle-container {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    padding: 10px 20px;
+    border-radius: 50px;
+    width: fit-content;
+    margin-bottom: 4rem;
+}
+.goal-label { margin-right: 15px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; }
+.switch { position: relative; display: inline-block; width: 180px; height: 34px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+    background-color: transparent; border: 2px solid var(--primary-gold); border-radius: 34px;
+    transition: .4s; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 10px; font-size: 0.8rem; font-weight: 600;
+}
+.slider:before {
+    position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 2px;
+    background-color: var(--primary-gold); border-radius: 50%; transition: .4s;
+}
+input:checked + .slider:before { transform: translateX(146px); }
+.slider .loss-text { margin-left: 25px; }
+.slider .gain-text { margin-right: 25px; }
+
+/* 7. Feature Cards */
+.feature-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0 5% 5rem;
+    background: var(--dark-bg);
+    margin-top: -80px; /* This creates the overlap effect */
+    position: relative;
+    z-index: 2;
+}
+.f-card {
+    background: var(--card-bg);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+.f-card:hover { transform: translateY(-10px); border-color: var(--primary-gold); }
+.f-card-icon { font-size: 3rem; color: var(--primary-gold); margin-bottom: 1.5rem; }
+.f-card h3 { font-size: 1.2rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+.f-card p { font-family: 'Open Sans', sans-serif; color: var(--text-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 2rem; }
+
+/* Buttons */
+.btn {
+    display: inline-block; padding: 12px 30px;
+    background: var(--primary-gold); color: var(--dark-bg);
+    text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.8rem;
+    border-radius: 5px; transition: background 0.3s; border: none; cursor: pointer;
+}
+.btn:hover { background: #d4b77f; }
+.btn-outline { background: transparent; border: 2px solid var(--primary-gold); color: var(--primary-gold); }
+.btn-outline:hover { background: var(--primary-gold); color: var(--dark-bg); }
+
+/* 8. Tables (Workouts) */
+.section-header { text-align: center; margin-bottom: 4rem; }
+.section-header h2 { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 1rem; }
+.section-header p { color: var(--text-gray); font-family: 'Open Sans', sans-serif; max-width: 600px; margin: 0 auto; }
+
+table { width: 100%; border-collapse: separate; border-spacing: 0 10px; margin-top: 1rem; }
+th { text-align: left; padding: 15px; color: var(--text-gray); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+td { background: var(--card-bg); padding: 20px; border: 1px solid rgba(255,255,255,0.05); }
+td:first-child { border-radius: 8px 0 0 8px; border-left: 3px solid var(--primary-gold); }
+td:last-child { border-radius: 0 8px 8px 0; }
+td strong { color: var(--primary-gold); display: block; margin-bottom: 5px; }
+td span { font-family: 'Open Sans', sans-serif; font-size:
